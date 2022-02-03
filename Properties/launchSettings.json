@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SpruceBeetle": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Rhino 7\\System\\Rhino.exe"
+    }
+  }
+}

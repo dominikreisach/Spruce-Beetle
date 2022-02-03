@@ -1,0 +1,11 @@
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.AssemblyInfoInputs.cache
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.AssemblyInfo.cs
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.csproj.CoreCompileInputs.cache
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle_Timber.Properties.Resources.resources
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.csproj.GenerateResource.cache
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\bin\Debug\net48\Upcycle Timber.gha
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\bin\Debug\net48\Upcycle Timber.pdb
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.gha
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.pdb
+D:\Dominik\architecture\miscellaneous\c#\Upcycle Timber\Upcycle Timber\obj\Debug\net48\Upcycle Timber.csproj.AssemblyReference.cache
