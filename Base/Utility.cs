@@ -56,9 +56,9 @@ namespace SpruceBeetle
             var curvatureMin = lengthList.Min();
 
             // check if curvature is too high
-            if (CurvatureRadius(crv, curvatureMax) < 1)
+            if (CurvatureRadius(crv, curvatureMax) < 0.5)
                 throw new Exception("Curvature is too high!");
-            else if (CurvatureRadius(crv, curvatureMin) < 1)
+            else if (CurvatureRadius(crv, curvatureMin) < 0.5)
                 throw new Exception("Curvature is too high!");
 
             // create interval
@@ -117,7 +117,7 @@ namespace SpruceBeetle
             bool ClosestPt = crv.ClosestPoint(firstPlane.Origin, out double tClosest);
 
             // check if end of curve
-            if (tClosest >= 1)
+            if (tClosest > 1)
                 throw new Exception("End of curve!");
 
             // call CurveCurvature method
@@ -186,7 +186,7 @@ namespace SpruceBeetle
             crv.ClosestPoint(firstPlane.Origin, out double tClosest);
 
             // check if end of curve
-            if (tClosest >= 1)
+            if (tClosest > 1)
                 throw new Exception("End of curve!");
 
             // call CurveCurvature method
@@ -214,15 +214,22 @@ namespace SpruceBeetle
         //------------------------------------------------------------
         // AlignOffcuts method
         //------------------------------------------------------------
-        public static void AlignOffcuts(Curve crv, Offcut offcutDim, Plane firstPlane, double adjustmentVal, double angle, int ocBaseIndex, out Brep offcut, out List<Plane> planes, out double vol)
+        public static void AlignOffcuts(Curve crv, Offcut offcutDim, Plane firstPlane, double adjustmentVal, double angle, int ocBaseIndex, bool end, out Brep offcut, out List<Plane> planes, out double vol)
         {
-            // create sphere to intersect with curve; the sphere has to be a bit smaller than the Z value
-            Brep sphere = new Sphere(firstPlane.Origin, offcutDim.Z * adjustmentVal).ToBrep();
-            Intersection.CurveBrep(crv, sphere, 0.01, out _, out Point3d[] intersectionPts);
-            crv.ClosestPoint(intersectionPts.Last(), out double tIntersect);
+            Plane secondPlane;
+            
+            if (!end)
+            {
+                // create sphere to intersect with curve; the sphere has to be a bit smaller than the Z value
+                Brep sphere = new Sphere(firstPlane.Origin, offcutDim.Z * adjustmentVal).ToBrep();
+                Intersection.CurveBrep(crv, sphere, 0.01, out _, out Point3d[] intersectionPts);
+                crv.ClosestPoint(intersectionPts.Last(), out double tIntersect);
 
-            // create second plane on curve
-            crv.PerpendicularFrameAt(tIntersect, out Plane secondPlane);
+                // create second plane on curve
+                crv.PerpendicularFrameAt(tIntersect, out secondPlane);
+            }
+            else
+                crv.PerpendicularFrameAt(1, out secondPlane);
 
             // determine the rotation of the Offcuts
             //double angle = Utility.Remap(crv.CurvatureAt(tIntersect).Length, new Interval(0.0, 1.0), angleBounds);
@@ -273,7 +280,7 @@ namespace SpruceBeetle
         //------------------------------------------------------------
         // DirectlyAlignOffcuts method
         //------------------------------------------------------------
-        public static void DirectlyAlignOffcuts(Curve crv, Offcut offcutDim, Plane initialPlane, double adjustmentVal, double angle, int ocBaseIndex, int i, out Brep offcut, out List<Plane> planes, out double vol)
+        public static void DirectlyAlignOffcuts(Curve crv, Offcut offcutDim, Plane initialPlane, double adjustmentVal, double angle, int ocBaseIndex, int i, bool end, out Brep offcut, out List<Plane> planes, out double vol)
         {
             // initialise new Plane
             Plane firstPlane;
@@ -293,13 +300,21 @@ namespace SpruceBeetle
                 crv.PerpendicularFrameAt(tFIntersect, out firstPlane);
             }
 
-            // create sphere to intersect with curve; the sphere has to be a bit smaller than the Z value
-            Brep secondSphere = new Sphere(firstPlane.Origin, offcutDim.Z * adjustmentVal).ToBrep();
-            Intersection.CurveBrep(crv, secondSphere, 0.0001, out _, out Point3d[] secondIntPts);
-            crv.ClosestPoint(secondIntPts.Last(), out double tSIntersect);
+            Plane secondPlane;
 
-            // create second plane on curve
-            crv.PerpendicularFrameAt(tSIntersect, out Plane secondPlane);
+            if (!end)
+            {
+                // create sphere to intersect with curve; the sphere has to be a bit smaller than the Z value
+                Brep secondSphere = new Sphere(firstPlane.Origin, offcutDim.Z * adjustmentVal).ToBrep();
+                Intersection.CurveBrep(crv, secondSphere, 0.0001, out _, out Point3d[] secondIntPts);
+                crv.ClosestPoint(secondIntPts.Last(), out double tSIntersect);
+
+                // create second plane on curve
+                crv.PerpendicularFrameAt(tSIntersect, out secondPlane);
+            }
+            else
+                crv.PerpendicularFrameAt(1.0, out secondPlane);
+
 
             // determine the orientation of the Offcuts
             firstPlane.Transform(Transform.Rotation(ConvertToRadians(angle), firstPlane.ZAxis, firstPlane.Origin));
@@ -409,6 +424,26 @@ namespace SpruceBeetle
         //------------------------------------------------------------
         // GetMinimumDimensions method
         //------------------------------------------------------------
+        public static void GetMaxZ(List<Offcut> offcutList, out Offcut maxOffcut, out int maxIndex)
+        {
+            // initialise new list
+            List<double> zvalues = new List<double>();
+
+            // store all z values in list
+            foreach (Offcut offcut in offcutList)
+                zvalues.Add(offcut.Z);
+
+            // get index of Offcut
+            maxIndex = zvalues.IndexOf(zvalues.Max());
+
+            // return Offcut with max z-value
+            maxOffcut = offcutList[maxIndex];
+        }
+
+
+        //------------------------------------------------------------
+        // GetMinimumDimensions method
+        //------------------------------------------------------------
         public static List<double[]> GetMinimumDimension(List<Offcut> offcutList, int i)
         {
             // get the base for the joint position of each Offcut
@@ -426,6 +461,7 @@ namespace SpruceBeetle
                 firstMin = Joint.GetMinValue(offcutList[i].X, offcutList[i].Y, offcutList[i - 1].X, offcutList[i - 1].Y);
                 secondMin = Joint.GetMinValue(offcutList[i].X, offcutList[i].Y, offcutList[i + 1].X, offcutList[i + 1].Y);
             }
+
             else
             {
                 firstMin = Joint.GetMinValue(offcutList[i].X, offcutList[i].Y, offcutList[i - 1].X, offcutList[i - 1].Y);

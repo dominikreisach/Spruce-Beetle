@@ -92,7 +92,7 @@ namespace SpruceBeetle
                 minValues[0] = minOtherX;
             }
 
-            // get the minimum x value
+            // get the minimum y value
             if (minThisY <= minOtherY)
             {
                 minValues[1] = minThisY;

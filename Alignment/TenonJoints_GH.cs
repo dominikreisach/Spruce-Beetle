@@ -56,8 +56,11 @@ namespace SpruceBeetle.Alignment
             pManager.AddNumberParameter("Joint Z", "JZ", "Joint dimension in Z direction", GH_ParamAccess.item, 0.04);
             pManager.AddTextParameter("Joint Type", "JT", "Adds the specified joint type", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Tenon Count", "TC", "The number of tenons to be created", GH_ParamAccess.item, 1);
-            pManager.AddCurveParameter("Custom Shape", "CS", "Creates a custom tenon from the specifc shape of a closed planar curve", GH_ParamAccess.item);
-            pManager[7].Optional = true;
+
+            //pManager.AddCurveParameter("Custom Shape", "CS", "Creates a custom tenon from the specifc shape of a closed planar curve", GH_ParamAccess.item);
+            //pManager[7].Optional = true;
+            
+            // pManager[7].Optional = true;
 
             parameter = pManager[5];
 
@@ -135,16 +138,16 @@ namespace SpruceBeetle.Alignment
             if (!DA.GetData(4, ref jointZ)) return;
             if (!DA.GetData(5, ref jointKey)) return;
             if (!DA.GetData(6, ref tenonCount)) return;
-            if (!DA.GetData(7, ref jointShape)) return;
+            //if (!DA.GetData(7, ref jointShape)) return;
 
-            // check if the curve is closed and planar
-            if (jointShape != null)
-            {
-                if (!jointShape.IsClosed)
-                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The curve is not closed!");
-                else if (!jointShape.IsPlanar())
-                    AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The curve is not planar!");
-            }
+            //// check if the curve is closed and planar
+            //if (jointShape != null)
+            //{
+            //    if (!jointShape.IsClosed)
+            //        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The curve is not closed!");
+            //    else if (!jointShape.IsPlanar())
+            //        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The curve is not planar!");
+            //}
 
             // get joint type
             Dictionary<string, int> jointDict = Joint.GetJointType();

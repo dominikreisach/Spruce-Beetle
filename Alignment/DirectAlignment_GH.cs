@@ -189,16 +189,25 @@ namespace SpruceBeetle.Alignment
             double tIntersect = 0.0;
             int dataCount = offcutData.Count;
 
+            // set distance
+            double distance = curve.PointAtStart.DistanceTo(curve.PointAtEnd);
+
+            // add last item
+            bool addLast = true;
+
             for (int i = 0; i < dataCount; i++)
             {
-                if (tIntersect < 0.96)
+                // get maximum z value
+                Utility.GetMaxZ(offcutData, out Offcut maxOffcut, out int maxIndex);
+
+                if (distance > maxOffcut.Z)
                 {
                     // get angle for rotation
                     double angle = Utility.Remap(tIntersect, new Interval(0.0, 1.0), angleBounds);
 
                     // call methods to align the Offcuts along the curve in an optimized manner
                     Utility.GetOptimizedOffcutIndex(curve, offcutData, secondPlane, angleBounds, out Plane startPlane, out int offcutIndex, out double adjustmentValue);
-                    Utility.DirectlyAlignOffcuts(curve, offcutData[offcutIndex], startPlane, adjustmentValue, angle, ocBaseIndex, i, out Brep alignedOffcut, out List<Plane> planeList, out double vol);
+                    Utility.DirectlyAlignOffcuts(curve, offcutData[offcutIndex], startPlane, adjustmentValue, angle, ocBaseIndex, i, false, out Brep alignedOffcut, out List<Plane> planeList, out double vol);
 
                     // adding data to the output list
                     Offcut localOffcut = new Offcut(offcutData[offcutIndex])
@@ -226,7 +235,42 @@ namespace SpruceBeetle.Alignment
 
                     // check the t value for the new starting plane
                     curve.ClosestPoint(planeList[2].Origin, out tIntersect);
+
+                    // check the distance for the new starting plane
+                    distance = planeList[1].Origin.DistanceTo(curve.PointAtEnd);
                 }
+
+                else if (addLast)
+                {
+                    // get angle for rotation
+                    double angle = Utility.Remap(tIntersect, new Interval(0.0, 1.0), angleBounds);
+
+                    // call methods to align the Offcuts along the curve in an optimized manner
+                    Utility.GetOptimizedOffcutIndex(curve, offcutData, secondPlane, angleBounds, out Plane startPlane, out int offcutIndex, out double adjustmentValue);
+                    Utility.DirectlyAlignOffcuts(curve, offcutData[maxIndex], startPlane, adjustmentValue, angle, ocBaseIndex, i, true, out Brep alignedOffcut, out List<Plane> planeList, out double vol);
+
+                    // adding data to the output list
+                    Offcut localOffcut = new Offcut(offcutData[maxIndex])
+                    {
+                        OffcutGeometry = alignedOffcut,
+                        FabVol = vol,
+                        FirstPlane = planeList[1],
+                        SecondPlane = planeList[2],
+                        AveragePlane = planeList[4],
+                        MovedAveragePlane = planeList[7],
+                        PositionIndex = ocBaseIndex
+                    };
+
+                    // add planes to plane list
+                    allPlanes.Add(planeList);
+
+                    // store data in Offcut_GH list
+                    offcutList.Add(localOffcut);
+
+                    // remove used Offcut from list
+                    offcutData.RemoveAt(maxIndex);
+                }
+
                 else
                     break;
             }

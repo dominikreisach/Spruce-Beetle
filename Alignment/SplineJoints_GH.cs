@@ -102,7 +102,7 @@ namespace SpruceBeetle.Alignment
                 if (i == 0)
                 {
                     // call CreateJoints method
-                    CreateSplines(alignedOffcuts[i].SecondPlane, jointX, jointY, toolRadius, secondMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] joints);
+                    CreateSplines(alignedOffcuts[i].SecondPlane, jointX, jointY, toolRadius, secondMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] joints, out Brep[] display);
 
                     // call CutOffcut method
                     Brep cutOffcut = Joint.CutOffcut(joints, alignedOffcuts[i].OffcutGeometry);
@@ -112,18 +112,18 @@ namespace SpruceBeetle.Alignment
                     outputOffcutVol[i] = cutOffcut.GetVolume(0.0001, 0.0001);
 
                     // output joint data
-                    outputJointVol[i] = joints[0].GetVolume(0.0001, 0.0001) * splineCount;
+                    outputJointVol[i] = display[0].GetVolume(0.0001, 0.0001) * splineCount;
 
                     for (int j = 0; j < joints.Length; j++)
                     {
-                        outputJoints[i, j] = joints[j];
+                        outputJoints[i, j] = display[j];
                     }
                 }
 
                 else if (i == alignedOffcuts.Count - 1)
                 {
                     // call CreateJoints method
-                    CreateSplines(alignedOffcuts[i].FirstPlane, jointX, jointY, toolRadius, firstMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] joints);
+                    CreateSplines(alignedOffcuts[i].FirstPlane, jointX, jointY, toolRadius, firstMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] joints, out Brep[] display);
 
                     // call CutOffcut method
                     Brep cutOffcut = Joint.CutOffcut(joints, alignedOffcuts[i].OffcutGeometry);
@@ -136,20 +136,20 @@ namespace SpruceBeetle.Alignment
                 else
                 {
                     // call CreateJoints method for both ends of the Offcuts
-                    CreateSplines(alignedOffcuts[i].FirstPlane, jointX, jointY, toolRadius, firstMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] firstJoints);
-                    CreateSplines(alignedOffcuts[i].SecondPlane, jointX, jointY, toolRadius, secondMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] secondJoints);
+                    CreateSplines(alignedOffcuts[i].FirstPlane, jointX, jointY, toolRadius, firstMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] firstJoints, out Brep[] firstDisplay);
+                    CreateSplines(alignedOffcuts[i].SecondPlane, jointX, jointY, toolRadius, secondMin, alignedOffcuts[i].Y, alignedOffcuts[i].PositionIndex, splineCount, out Brep[] secondJoints, out Brep[] secondDisplay);
 
                     // add all joints to one single array
                     Brep[] cutterBreps = new Brep[splineCount * 2];
 
                     // output joint data and add joints to brep array
-                    outputJointVol[i] = secondJoints[0].GetVolume(0.0001, 0.0001) * splineCount;
+                    outputJointVol[i] = secondDisplay[0].GetVolume(0.0001, 0.0001) * splineCount;
 
                     for (int j = 0; j < secondJoints.Length; j++)
                     {
                         cutterBreps[j] = firstJoints[j];
                         cutterBreps[j + splineCount] = secondJoints[j];
-                        outputJoints[i, j] = secondJoints[j];
+                        outputJoints[i, j] = secondDisplay[j];
                     }
 
                     // call CutOffcut method
@@ -196,10 +196,11 @@ namespace SpruceBeetle.Alignment
         //------------------------------------------------------------
         // CreateSplines method
         //------------------------------------------------------------
-        protected void CreateSplines(Plane plane, double jointX, double jointY, double toolRadius, double[] minValue, double yDim, int positionIndex, int splineCount, out Brep[] returnJoint)
+        protected void CreateSplines(Plane plane, double jointX, double jointY, double toolRadius, double[] minValue, double yDim, int positionIndex, int splineCount, out Brep[] returnJoint, out Brep[] displayJoint)
         {
             // initialise empty brep variable
             returnJoint = new Brep[splineCount];
+            displayJoint = new Brep[splineCount];
 
             // initialise new plane
             Plane basePlane = new Plane(plane);
@@ -214,14 +215,14 @@ namespace SpruceBeetle.Alignment
             // joint dimensions
             Interval dX = new Interval(-jointX / 2, jointX / 2);
             Interval dY = new Interval(-jointY / 2, jointY / 2);
-            double dZ = yDim * 1.2;
+            double dZ = yDim * 2;
 
             // rotate base plane
             double angle = Utility.ConvertToRadians(90);
             basePlane.Rotate(angle, basePlane.XAxis, basePlane.Origin);
 
             // move basePlane for centered extrusion
-            basePlane.Transform(Transform.Translation(basePlane.ZAxis * minValue[1] / 2 * 1.1));
+            basePlane.Transform(Transform.Translation(basePlane.ZAxis * minValue[1]));
 
             // base points for the splines
             Point3d[] divPts = Joint.GetPoints(basePlane, minValue[0], splineCount);
@@ -241,12 +242,17 @@ namespace SpruceBeetle.Alignment
                     // extrude first base to create first joint
                     Brep joint = Extrusion.Create(baseCurve, -dZ, true).ToBrep();
 
+                    // create display joints
+                    basePlane.Transform(Transform.Translation(basePlane.ZAxis * -minValue[1] / 2));
+                    Brep display = Extrusion.Create(DovetailRect(new Rectangle3d(basePlane, dX, dY), basePlane, toolRadius), -minValue[1], true).ToBrep();
+
                     // clean-up
                     joint.Faces.SplitKinkyFaces(0.0001);
                     if (BrepSolidOrientation.Inward == joint.SolidOrientation)
                         joint.Flip();
 
                     returnJoint[i] = joint;
+                    displayJoint[i] = display;
                 }
                 else
                 {
@@ -258,7 +264,11 @@ namespace SpruceBeetle.Alignment
                     Curve baseCurve = DovetailRect(baseRect, basePlane, toolRadius);
 
                     // extrude first base to create first joint
-                    Brep joint = Extrusion.Create(baseCurve, -minValue[1] * 1.1, true).ToBrep();
+                    Brep joint = Extrusion.Create(baseCurve, -minValue[1] * 2, true).ToBrep();
+
+                    // create display joints
+                    basePlane.Transform(Transform.Translation(basePlane.ZAxis * -minValue[1] / 2));
+                    Brep display = Extrusion.Create(DovetailRect(new Rectangle3d(basePlane, dX, dY), basePlane, toolRadius), -minValue[1], true).ToBrep();
 
                     // clean-up
                     joint.Faces.SplitKinkyFaces(0.0001);
@@ -266,6 +276,7 @@ namespace SpruceBeetle.Alignment
                         joint.Flip();
 
                     returnJoint[i] = joint;
+                    displayJoint[i] = display;
                 }
             }
         }
