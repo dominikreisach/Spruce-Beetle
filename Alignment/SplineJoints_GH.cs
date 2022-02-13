@@ -242,14 +242,19 @@ namespace SpruceBeetle.Alignment
                     // extrude first base to create first joint
                     Brep joint = Extrusion.Create(baseCurve, -dZ, true).ToBrep();
 
+                    // cutter clean-up
+                    joint.Faces.SplitKinkyFaces(0.0001);
+                    if (BrepSolidOrientation.Inward == joint.SolidOrientation)
+                        joint.Flip();
+
                     // create display joints
                     basePlane.Transform(Transform.Translation(basePlane.ZAxis * -minValue[1] / 2));
                     Brep display = Extrusion.Create(DovetailRect(new Rectangle3d(basePlane, dX, dY), basePlane, toolRadius), -minValue[1], true).ToBrep();
 
-                    // clean-up
-                    joint.Faces.SplitKinkyFaces(0.0001);
-                    if (BrepSolidOrientation.Inward == joint.SolidOrientation)
-                        joint.Flip();
+                    // display clean-up
+                    display.Faces.SplitKinkyFaces(0.0001);
+                    if (BrepSolidOrientation.Inward == display.SolidOrientation)
+                        display.Flip();
 
                     returnJoint[i] = joint;
                     displayJoint[i] = display;
@@ -266,14 +271,19 @@ namespace SpruceBeetle.Alignment
                     // extrude first base to create first joint
                     Brep joint = Extrusion.Create(baseCurve, -minValue[1] * 2, true).ToBrep();
 
+                    // cutter clean-up
+                    joint.Faces.SplitKinkyFaces(0.0001);
+                    if (BrepSolidOrientation.Inward == joint.SolidOrientation)
+                        joint.Flip();
+
                     // create display joints
                     basePlane.Transform(Transform.Translation(basePlane.ZAxis * -minValue[1] / 2));
                     Brep display = Extrusion.Create(DovetailRect(new Rectangle3d(basePlane, dX, dY), basePlane, toolRadius), -minValue[1], true).ToBrep();
 
-                    // clean-up
-                    joint.Faces.SplitKinkyFaces(0.0001);
-                    if (BrepSolidOrientation.Inward == joint.SolidOrientation)
-                        joint.Flip();
+                    // display clean-up
+                    display.Faces.SplitKinkyFaces(0.0001);
+                    if (BrepSolidOrientation.Inward == display.SolidOrientation)
+                        display.Flip();
 
                     returnJoint[i] = joint;
                     displayJoint[i] = display;
