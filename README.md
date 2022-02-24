@@ -10,10 +10,10 @@ A description of each component and example files will follow soon. This toolkit
 
 # ToDo
 
-- [] JSON serialization
-- [] Add documentation
-- [] Improve intersection joints
-- [] Find more bugs :)
+- [ ] JSON serialization
+- [ ] Add documentation
+- [ ] Improve intersection joints
+- [ ] Find more bugs :)
 
 # License
 Copyright &copy; 2022, Dominik Reisach
