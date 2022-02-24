@@ -3,6 +3,7 @@ D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_ConstructOffcut.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_ContainerPacking.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_CSVCoord.png
+D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_CSVFiles.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_CSVOffcut.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_Deconstruct Offcut.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_DirectAlignment.png
@@ -10,12 +11,15 @@ D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_FindIntersections.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_GetBrep.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_IntersectionJoints.png
+D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_JSONOffcut.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_MoveToOrigin.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_Offcut.png
+D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_OffcutJSON.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_OptimizedAlignment.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_SplineJoints.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_SpruceBeetle.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_TenonJoints.png
+D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_TestAlignment.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_Unification.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\Resources\24x24_UpdateList.png
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\bin\Debug\net48\SpruceBeetle.gha
@@ -32,3 +36,4 @@ D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\obj\Debug\net48\SpruceBeet
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\obj\Debug\net48\SpruceBeetle.csproj.CopyComplete
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\obj\Debug\net48\SpruceBeetle.gha
 D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\obj\Debug\net48\SpruceBeetle.pdb
+D:\Dominik\architecture\miscellaneous\c#\SpruceBeetle\obj\Debug\net48\SpruceBeetle.csproj.AssemblyReference.cache

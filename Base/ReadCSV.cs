@@ -41,7 +41,7 @@ namespace SpruceBeetle
 
 
         //------------------------------------------------------------
-        // GetMillingCoordinates method
+        // GetCSVData method
         //------------------------------------------------------------
         public List<string> GetCSVData()
         {

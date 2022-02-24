@@ -27,9 +27,9 @@ https://github.com/enzoruiz/3dbinpacking
 """
 
 
-from flask import Flask
-import ghhops_server as hs
+from matplotlib.pyplot import box
 import rhinoinside
+import ghhops_server as hs
 import py3dbp as py3
 
 rhinoinside.load()
@@ -38,55 +38,59 @@ import System
 import Rhino
 import Rhino.Geometry as rg
 
-hops = hs.Hops(app=rhinoinside)
+hops = hs.Hops(app= rhinoinside)
 
 # create a new hops component
 @hops.component(
     "/BinPack",
-    name="Bin Packing BestFit",
+    name="Bin Packing",
     nickname="PackBin",
     description="The BestFit algorithm supports full item rotation and has excellent runtime performance and bin utilization",
     category="Spruce Beetle",
     subcategory="   Packing",
     icon="D:/Dominik/architecture/miscellaneous/c#/SpruceBeetle/Resources/24x24_BinPacking.png",
     inputs=[
-        hs.HopsBrep("Box", "B", "Box container to fill with Offcuts"),
+        hs.HopsBrep("Bin", "B", "Bin to fill with Offcuts"),
         hs.HopsNumber("X", "X", "X dimension of the Offcuts", list),
         hs.HopsNumber("Y", "Y", "Y dimension of the Offcuts", list),
-        hs.HopsNumber("Z", "Z", "Z dimension of hte Offcuts", list)
+        hs.HopsNumber("Z", "Z", "Z dimension of the Offcuts", list),
     ],
     outputs=[
-        hs.HopsBrep("Container", "C", "The container where the Offcuts are packed into"),
-        hs.HopsBrep("Packed Offcuts", "POc", "List of packed Offcuts", list)
-    ]
+        hs.HopsBrep("Packed Bin", "PB", "The bin where the Offcuts are packed into"),
+        hs.HopsBrep("Packed Offcuts", "POc", "List of packed Offcuts", list),
+    ],
 )
 
-def BinPack(Box, X, Y, Z):
+def BinPack(Bin, X, Y, Z):
+    # generate box out of brep
+    bbox = rg.Box(Bin.GetBoundingBox(True))
+    
     # create Packer
     packer = py3.Packer()
 
     # create bin / container
-    bin_container = py3.Bin('Container', Box.X, Box.Y, Box.Z, 1000)
+    bin_container = py3.Bin('Bin', bbox.X.T1, bbox.Y.T1, bbox.Z.T1, 1000.0)
 
     packer.add_bin(bin_container)
 
     # create Offcuts
-    for i in range(X):
-        packer.add_item(py3.Item(str(i), X[i], Y[i], Z[i], (X * Y * Z * 470)))
+    for i in range(len(X)):
+        packer.add_item(py3.Item(str(i), X[i], Y[i], Z[i], (X[i] * Y[i] * Z[i] * 470.0)))
         
     packer.pack()
 
-    packed_wall = System.Collection.Generic.List[rg.Brep()]
+    packed_wall = System.Collections.Generic.List[rg.Brep]()
 
     for bin in packer.bins:
         
-        xb = bin.width
-        yb = bin.height
-        zb = bin.depth
+        xb = float(bin.width)
+        yb = float(bin.height)
+        zb = float(bin.depth)
         
         rect_b = rg.Rectangle3d.ToNurbsCurve(rg.Rectangle3d(rg.Plane.WorldXY, xb, zb))
-        srf_b = rg.Surface.ToBrep(rg.Surface.CreateExtrusion(rect_b, rg.Vector3d(0, 0, yb)))
+        srf_b = rg.Surface.ToBrep(rg.Surface.CreateExtrusion(rect_b, rg.Vector3d(0.0, 0.0, yb)))
         bin_b = rg.Brep.CapPlanarHoles(srf_b, 0.01)
+        bin_b.Faces.SplitKinkyFaces(0.01)
         
         BIN = bin_b
 
@@ -98,46 +102,48 @@ def BinPack(Box, X, Y, Z):
     # packed Offcuts
     for bin in packer.bins:    
         for item in bin.items:
-            x = 0
-            y = 0
-            z = 0
+            x = 0.0
+            y = 0.0
+            z = 0.0
             
             if item.rotation_type == 0:
-                x = item.width
-                y = item.height
-                z = item.depth
+                x = float(item.width)
+                y = float(item.height)
+                z = float(item.depth)
             elif item.rotation_type == 1:
-                y = item.width
-                x = item.height
-                z = item.depth
+                y = float(item.width)
+                x = float(item.height)
+                z = float(item.depth)
             elif item.rotation_type == 2:
-                z = item.width
-                x = item.height
-                y = item.depth
+                z = float(item.width)
+                x = float(item.height)
+                y = float(item.depth)
             elif item.rotation_type == 3:
-                z = item.width
-                y = item.height
-                x = item.depth
+                z = float(item.width)
+                y = float(item.height)
+                x = float(item.depth)
             elif item.rotation_type == 4:
-                y = item.width
-                z = item.height
-                x = item.depth
+                y = float(item.width)
+                z = float(item.height)
+                x = float(item.depth)
             elif item.rotation_type == 5:
-                x = item.width
-                z = item.height
-                y = item.depth
+                x = float(item.width)
+                z = float(item.height)
+                y = float(item.depth)
 
             # construct Box 
-            rect = rg.Rectangle3d.ToNurbsCurve(rg.Rectangle3d(rg.Plane.WorldXY, x, z))
-            srf = rg.Surface.ToBrep(rg.Surface.CreateExtrusion(rect, rg.Vector3d(0, 0, y)))
-            offcut = rg.Brep.CapPlanarHoles(srf, 0.01)
+            rect = rg.Rectangle3d(rg.Plane.WorldXY, x, z)
+            open_offcut = rg.Surface.CreateExtrusion(rect.ToNurbsCurve(), rg.Vector3d(0.0, 0.0, y)).ToBrep()
+            offcut = open_offcut.CapPlanarHoles(0.001)
+            offcut.Faces.SplitKinkyFaces(0.001)
             
-            move_vec = rg.Vector3d(item.position[0], item.position[2], item.position[1])
+            move_vec = rg.Vector3d(float(item.position[0]), float(item.position[2]), float(item.position[1]))
             move = rg.Transform.Translation(move_vec)
             
             offcut.Transform(move)
-            packed_wall.append(offcut)
+            packed_wall.Add(offcut)
 
+            return bin_b, packed_wall
 
 if __name__ == "__main__":
-    hops.start(debug=True)
+    hops.start(debug=False)

@@ -41,6 +41,7 @@ namespace SpruceBeetle.Create
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("File Path", "file", "Provide a path to an CSV file", GH_ParamAccess.item);
+            pManager.AddTextParameter("Delimiter", "D", "Provide a delimiter", GH_ParamAccess.item, ";");
 
             pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
         }
@@ -59,8 +60,10 @@ namespace SpruceBeetle.Create
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             string filePath = "";
+            string delimiter = ";";
 
             DA.GetData(0, ref filePath);
+            DA.GetData(1, ref delimiter);
 
             if (filePath == null)
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "No file path provided!");
@@ -77,7 +80,7 @@ namespace SpruceBeetle.Create
                 for (int i = 0; i < coordinatesTxt.Count; i++)
                 {
                     // split string into coordinate strings
-                    string[] coordinates = coordinatesTxt[i].Split(';');
+                    string[] coordinates = coordinatesTxt[i].Split(delimiter.ToCharArray()[0]);
 
                     // convert strings to doubles
                     double index = Convert.ToDouble(coordinates[0]);

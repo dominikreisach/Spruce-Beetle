@@ -8,6 +8,13 @@ A toolkit for working with timber offcuts and reclaimed timber in [Rhino/Grassho
 
 A description of each component and example files will follow soon. This toolkit is still <i>wip</i> and will be extended!
 
+# ToDo
+
+- [] JSON serialization
+- [] Add documentation
+- [] Improve intersection joints
+- [] Find more bugs :)
+
 # License
 Copyright &copy; 2022, Dominik Reisach
 

@@ -24,15 +24,16 @@
 
 
 using System;
-using System.Collections.Generic;
+using System.IO;
+using Grasshopper;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
+using Grasshopper.Kernel.Data;
 
 namespace SpruceBeetle.Fabricate
 {
-    public class GetCoordinates_GH : GH_Component
+    public class GetCSVFiles_GH : GH_Component
     {
-        public GetCoordinates_GH() : base("Get Coordinates", "Coords", "Convert the data from an CSV file to point coordinates", "Spruce Beetle", "    Fabricate")
+        public GetCSVFiles_GH() : base("Get CSV Files", "CSV", "Find all CSV files in a specific folder", "Spruce Beetle", "    Fabricate")
         {
         }
 
@@ -40,8 +41,7 @@ namespace SpruceBeetle.Fabricate
         // parameter inputs
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("File Path", "file", "Provide a path to a CSV file", GH_ParamAccess.item);
-            pManager.AddTextParameter("Delimiter", "D", "Provide a delimiter", GH_ParamAccess.item, ";");
+            pManager.AddTextParameter("Folder Path", "F", "Provide a path to a folder", GH_ParamAccess.item);
 
             pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
         }
@@ -50,7 +50,7 @@ namespace SpruceBeetle.Fabricate
         // parameter outputs
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddPointParameter("Coordinates", "C", "The target coordinates as points", GH_ParamAccess.list);
+            pManager.AddTextParameter("File Paths", "FP", "File paths of all CSV files in the folder", GH_ParamAccess.tree);
 
             pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
         }
@@ -59,39 +59,32 @@ namespace SpruceBeetle.Fabricate
         // main
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            string filePath = "";
-            string delimiter = ";";
+            string folderPath = "";
 
-            DA.GetData(0, ref filePath);
-            DA.GetData(1, ref delimiter);
+            DA.GetData(0, ref folderPath);
 
-            if (filePath == null)
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "No file path provided!");
+            if (folderPath == null)
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "No folder path provided!");
             else
             {
-                // read CSV file and add string data to list
-                ReadCSV readCSV = new ReadCSV(filePath);
-                List<string> coordinatesTxt = readCSV.GetCSVData();
+                // get directory information, i.e., a FileInfo array
+                var dInfo = new DirectoryInfo(folderPath);
+                var filePaths = dInfo.GetFiles("*.csv", SearchOption.TopDirectoryOnly);
 
-                // initialise list of points
-                List<Point3d> ptList = new List<Point3d>();
+                // initialise data tree to store the file paths
+                DataTree<string> outputPaths = new DataTree<string>();
 
-                for (int i = 0; i < coordinatesTxt.Count; i++)
+                for (int i = 0; i < filePaths.Length; i++)
                 {
-                    // split string into coordinate strings
-                    string[] coordinates = coordinatesTxt[i].Split(delimiter.ToCharArray()[0]);
+                    // create tree path
+                    GH_Path treePath = new GH_Path(i);
 
-                    // convert strings to doubles
-                    double x = Convert.ToDouble(coordinates[0]);
-                    double y = Convert.ToDouble(coordinates[1]);
-                    double z = Convert.ToDouble(coordinates[2]);
-
-                    // create new point and add to list
-                    ptList.Add(new Point3d(x, y, z));
+                    // add string to path of the tree
+                    outputPaths.Add(filePaths[i].FullName, treePath);
                 }
 
-                // output coordinates
-                DA.SetDataList(0, ptList);
+                // output file paths
+                DA.SetDataTree(0, outputPaths);
             }
         }
 
@@ -104,9 +97,9 @@ namespace SpruceBeetle.Fabricate
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
         // add icon
-        protected override System.Drawing.Bitmap Icon => Properties.Resources._24x24_CSVCoord;
+        protected override System.Drawing.Bitmap Icon => Properties.Resources._24x24_CSVFiles;
 
         // component giud
-        public override Guid ComponentGuid => new Guid("4D21D990-C212-4500-9B04-9DB6C9BB9BD8");
+        public override Guid ComponentGuid => new Guid("6B9FED81-508C-4A33-9465-9757440A0AB5");
     }
 }

@@ -33,10 +33,10 @@ using Rhino.Geometry;
 
 namespace SpruceBeetle.Fabricate
 {
-    public class MoveToOrigin_GH : GH_Component
+    public class OrientOnPlane_GH : GH_Component
     {
-        public MoveToOrigin_GH()
-          : base("Move to Origin", "OMove", "Moves the Offcuts to the world origin for fabrication purposes", "Spruce Beetle", "    Fabricate")
+        public OrientOnPlane_GH()
+          : base("Orient on Plane", "OrientOc", "Orients the Offcuts to a specified planee for fabrication purposes", "Spruce Beetle", "    Fabricate")
         {
         }
 
@@ -45,8 +45,11 @@ namespace SpruceBeetle.Fabricate
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Aligned Offcuts", "AOc", "Aligned Offcuts on the curve", GH_ParamAccess.list);
+            pManager.AddPlaneParameter("Target Plane", "TP", "The plane where the Offcuts shall be oriented at", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Plane Index", "PI", "0 = Avrg, 1 = First, 2 = Second", GH_ParamAccess.item, 0);
 
-            pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
+            for (int i = 0; i < pManager.ParamCount; i++)
+                pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
         }
 
 
@@ -54,7 +57,7 @@ namespace SpruceBeetle.Fabricate
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
             
-            pManager.AddBrepParameter("Oriented Offcuts", "OOc", "Offcuts oriented to XY-Origin", GH_ParamAccess.tree);
+            pManager.AddBrepParameter("Oriented Offcuts", "OOc", "Offcuts oriented to the specified plane", GH_ParamAccess.tree);
 
             pManager.HideParameter(0);
             pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
@@ -66,9 +69,13 @@ namespace SpruceBeetle.Fabricate
         {
             // variables to reference the input parameters to
             List<Offcut> offcutData = new List<Offcut>();
+            Plane targetPlane = new Plane();
+            int planeIndex = 0;
 
             // access input parameter
             if (!DA.GetDataList(0, offcutData)) return;
+            if (!DA.GetData(1, ref targetPlane)) return;
+            if (!DA.GetData(2, ref planeIndex)) return;
 
             // initialise lists to store all the data
             DataTree<Brep> outputOriginOffcuts = new DataTree<Brep>();
@@ -78,7 +85,7 @@ namespace SpruceBeetle.Fabricate
             {
                 // create path for outputOriginOffcuts
                 GH_Path originPath = new GH_Path(i);
-                outputOriginOffcuts.AddRange(OffcutToOrigin(offcutData[i]), originPath);
+                outputOriginOffcuts.AddRange(OffcutToOrigin(offcutData[i], targetPlane, planeIndex), originPath);
             }
 
             // access output parameters
@@ -89,7 +96,7 @@ namespace SpruceBeetle.Fabricate
         //------------------------------------------------------------
         // OffcutToOrigin method
         //------------------------------------------------------------
-        protected List<Brep> OffcutToOrigin(Offcut offcut)
+        protected List<Brep> OffcutToOrigin(Offcut offcut, Plane targetPlane, int planeIndex)
         {
             // call CreateOffcutBrep method
             Brep originOffcut = Offcut.CreateOffcutBrep(offcut, offcut.AveragePlane, offcut.PositionIndex);
@@ -104,13 +111,35 @@ namespace SpruceBeetle.Fabricate
                 originOffcut
             };
 
-            // rotate average plane and create transform to xy origin
-            double angle = Utility.ConvertToRadians(90);
-            Plane avrgPlane = new Plane(offcut.AveragePlane);
+            // select a specific Offcut plane
+            Plane initialPlane = new Plane();
 
-            avrgPlane.Rotate(angle, avrgPlane.XAxis, avrgPlane.Origin);
+            switch(planeIndex)
+            {
+                case 0:
+                    {
+                        initialPlane = new Plane(offcut.AveragePlane);
+                    }
+                    break;
+                case 1:
+                    {
+                        initialPlane = new Plane(offcut.FirstPlane);
+                    }
+                    break;
+                case 2:
+                    {
+                        initialPlane = new Plane(offcut.SecondPlane);
+                    }
+                    break;
+                default:
+                    {
+                        initialPlane = new Plane(offcut.AveragePlane);
+                    }
+                    break;
+            }
 
-            Transform orientation = Transform.PlaneToPlane(avrgPlane, Plane.WorldXY);
+            // orient Offcuts
+            Transform orientation = Transform.PlaneToPlane(initialPlane, targetPlane);
 
             // output transformed Offcut for fabrication
             if (movedOffcut.Transform(orientation) && originOffcut.Transform(orientation))

@@ -53,11 +53,11 @@ namespace SpruceBeetle
             var curvatureMax = lengthList.Max();
             var curvatureMin = lengthList.Min();
 
-            // check if curvature is too high
-            if (CurvatureRadius(crv, curvatureMax) < 0.5)
-                throw new Exception("Curvature is too high!");
-            else if (CurvatureRadius(crv, curvatureMin) < 0.5)
-                throw new Exception("Curvature is too high!");
+            //// check if curvature is too high
+            //if (CurvatureRadius(crv, curvatureMax) < 0.5)
+            //    throw new Exception("Curvature is too high!");
+            //else if (CurvatureRadius(crv, curvatureMin) < 0.5)
+            //    throw new Exception("Curvature is too high!");
 
             // create interval
             Interval curveBounds = new Interval(curvatureMin, curvatureMax);
@@ -271,10 +271,42 @@ namespace SpruceBeetle
         }
 
 
-            //------------------------------------------------------------
-            // AlignOffcuts method
-            //------------------------------------------------------------
-            public static void AlignOffcuts(Curve crv, Offcut offcutDim, Plane firstPlane, double adjustmentVal, double angle, int ocBaseIndex, bool end, out Brep offcut, out List<Plane> planes, out double vol)
+        //------------------------------------------------------------
+        // TestAlignment method
+        //------------------------------------------------------------
+        public static void TestAlignment(Curve crv, Offcut offcutDim, Plane firstPlane, double adjustmentVal, bool end, out List<Plane> planes)
+        {
+            Plane secondPlane;
+
+            if (!end)
+            {
+                // create sphere to intersect with curve; the sphere has to be a bit smaller than the Z value
+                Brep sphere = new Sphere(firstPlane.Origin, offcutDim.Z * adjustmentVal).ToBrep();
+                Intersection.CurveBrep(crv, sphere, 0.0001, out _, out Point3d[] intersectionPts);
+                crv.ClosestPoint(intersectionPts.Last(), out double tIntersect);
+
+                // create second plane on curve
+                crv.PerpendicularFrameAt(tIntersect, out secondPlane);
+            }
+            else
+                crv.PerpendicularFrameAt(1, out secondPlane);
+
+            // add planes to a list
+            List<Plane> planeList = new List<Plane>
+            {
+                firstPlane,
+                secondPlane,
+            };
+
+            // assign return values
+            planes = planeList;
+        }
+
+
+        //------------------------------------------------------------
+        // AlignOffcuts method
+        //------------------------------------------------------------
+        public static void AlignOffcuts(Curve crv, Offcut offcutDim, Plane firstPlane, double adjustmentVal, double angle, int ocBaseIndex, bool end, out Brep offcut, out List<Plane> planes, out double vol)
         {
             Plane secondPlane;
             

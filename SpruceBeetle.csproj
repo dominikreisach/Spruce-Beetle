@@ -23,6 +23,7 @@
     <None Remove="Resources\24x24_ContainerPacking.png" />
     <None Remove="Resources\24x24_CreateJoints.png" />
     <None Remove="Resources\24x24_CSVCoord.png" />
+    <None Remove="Resources\24x24_CSVFiles.png" />
     <None Remove="Resources\24x24_CSVOffcut.png" />
     <None Remove="Resources\24x24_CustomJoints.png" />
     <None Remove="Resources\24x24_Deconstruct Offcut.png" />
@@ -34,13 +35,16 @@
     <None Remove="Resources\24x24_FindIntersections.png" />
     <None Remove="Resources\24x24_GetBrep.png" />
     <None Remove="Resources\24x24_IntersectionJoints.png" />
+    <None Remove="Resources\24x24_JSONOffcut.png" />
     <None Remove="Resources\24x24_LapJoints.png" />
     <None Remove="Resources\24x24_MoveToOrigin.png" />
     <None Remove="Resources\24x24_Offcut.png" />
+    <None Remove="Resources\24x24_OffcutJSON.png" />
     <None Remove="Resources\24x24_OptimizedAlignment.png" />
     <None Remove="Resources\24x24_SplineJoints.png" />
     <None Remove="Resources\24x24_SpruceBeetle.png" />
     <None Remove="Resources\24x24_TenonJoints.png" />
+    <None Remove="Resources\24x24_TestAlignment.png" />
     <None Remove="Resources\24x24_Unification.png" />
     <None Remove="Resources\24x24_UpcycleTimber.png" />
     <None Remove="Resources\24x24_UpdateList.png" />
@@ -78,6 +82,9 @@
     <EmbeddedResource Include="Resources\24x24_CSVCoord.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\24x24_CSVFiles.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_CSVOffcut.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -99,10 +106,16 @@
     <EmbeddedResource Include="Resources\24x24_IntersectionJoints.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\24x24_JSONOffcut.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_MoveToOrigin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_Offcut.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\24x24_OffcutJSON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_OptimizedAlignment.png">
@@ -115,6 +128,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_TenonJoints.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\24x24_TestAlignment.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_Unification.png">

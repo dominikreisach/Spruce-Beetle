@@ -211,7 +211,6 @@ namespace SpruceBeetle.Alignment
             // change origin of planes
             basePlane.Origin = originRect.Center;
 
-            // create joints according to the joint type
             // joint dimensions
             Interval dX = new Interval(-jointX / 2, jointX / 2);
             Interval dY = new Interval(-jointY / 2, jointY / 2);
@@ -295,7 +294,7 @@ namespace SpruceBeetle.Alignment
         //------------------------------------------------------------
         // DovtailRectangle
         //------------------------------------------------------------
-        protected Curve DovetailRect(Rectangle3d rect, Plane plane, double toolRadius)
+        public static Curve DovetailRect(Rectangle3d rect, Plane plane, double toolRadius)
         {
             // list for all corner points of the rectangle
             List<Point3d> rectangleCorners = new List<Point3d>

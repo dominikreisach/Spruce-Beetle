@@ -112,7 +112,7 @@ namespace SpruceBeetle.Packing
                     dynamic packer = py3.Packer();
 
                     // create bin
-                    dynamic binContainer = py3.Bin("Container", boundingBox.X, boundingBox.Y, boundingBox.Z, 1000);
+                    dynamic binContainer = py3.Bin("Container", boundingBox.X.T1, boundingBox.Y.T1, boundingBox.Z.T1, 470);
                     packer.add_bin(binContainer);
 
                     // create Offcuts
@@ -137,6 +137,7 @@ namespace SpruceBeetle.Packing
                         Rectangle3d baseRect = new Rectangle3d(Plane.WorldXY, xBin, zBin);
                         Brep openBin = Surface.CreateExtrusion(baseRect.ToNurbsCurve(), normalVec).ToBrep();
                         containerBin = openBin.CapPlanarHoles(0.0001);
+                        containerBin.Faces.SplitKinkyFaces(0.0001);
                     }
 
                     // collection of unused Offcuts
@@ -204,6 +205,7 @@ namespace SpruceBeetle.Packing
                             Rectangle3d baseRect = new Rectangle3d(Plane.WorldXY, x, z);
                             Brep openOffcut = Surface.CreateExtrusion(baseRect.ToNurbsCurve(), normalVec).ToBrep();
                             Brep closedOffcut = openOffcut.CapPlanarHoles(0.0001);
+                            closedOffcut.Faces.SplitKinkyFaces(0.0001);
 
                             // move Offcut to correct packing location
                             Vector3d moveVec = new Vector3d(item.position[0], item.position[2], item.position[1]);

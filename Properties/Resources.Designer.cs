@@ -113,6 +113,16 @@ namespace SpruceBeetle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _24x24_CSVFiles {
+            get {
+                object obj = ResourceManager.GetObject("_24x24_CSVFiles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _24x24_CSVOffcut {
             get {
                 object obj = ResourceManager.GetObject("_24x24_CSVOffcut", resourceCulture);
@@ -183,6 +193,16 @@ namespace SpruceBeetle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _24x24_JSONOffcut {
+            get {
+                object obj = ResourceManager.GetObject("_24x24_JSONOffcut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _24x24_MoveToOrigin {
             get {
                 object obj = ResourceManager.GetObject("_24x24_MoveToOrigin", resourceCulture);
@@ -196,6 +216,16 @@ namespace SpruceBeetle.Properties {
         internal static System.Drawing.Bitmap _24x24_Offcut {
             get {
                 object obj = ResourceManager.GetObject("_24x24_Offcut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _24x24_OffcutJSON {
+            get {
+                object obj = ResourceManager.GetObject("_24x24_OffcutJSON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +266,16 @@ namespace SpruceBeetle.Properties {
         internal static System.Drawing.Bitmap _24x24_TenonJoints {
             get {
                 object obj = ResourceManager.GetObject("_24x24_TenonJoints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _24x24_TestAlignment {
+            get {
+                object obj = ResourceManager.GetObject("_24x24_TestAlignment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

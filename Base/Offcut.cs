@@ -69,6 +69,11 @@ namespace SpruceBeetle
             PositionIndex = offcut.PositionIndex;
         }
 
+        public Offcut(Brep offcut)
+        {
+            OffcutGeometry = offcut;
+        }
+
         // constructor with index and dimensions
         public Offcut(double index, double x, double y, double z)
         {
