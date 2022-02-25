@@ -218,6 +218,7 @@ namespace SpruceBeetle.Alignment
                         SecondPlane = planeList[2],
                         AveragePlane = planeList[4],
                         MovedAveragePlane = planeList[7],
+                        BasePlane = Offcut.ComputeBasePlane(planeList[4], offcutData[offcutIndex].X, offcutData[offcutIndex].Y, offcutData[offcutIndex].Z),
                         PositionIndex = ocBaseIndex
                     };
 
@@ -258,6 +259,7 @@ namespace SpruceBeetle.Alignment
                         SecondPlane = planeList[2],
                         AveragePlane = planeList[4],
                         MovedAveragePlane = planeList[7],
+                        BasePlane = Offcut.ComputeBasePlane(planeList[4], offcutData[maxIndex].X, offcutData[maxIndex].Y, offcutData[maxIndex].Z),
                         PositionIndex = ocBaseIndex
                     };
 

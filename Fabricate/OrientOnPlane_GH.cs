@@ -25,9 +25,7 @@
 
 using System;
 using System.Collections.Generic;
-using Grasshopper;
 using Grasshopper.Kernel;
-using Grasshopper.Kernel.Data;
 using Rhino.Geometry;
 
 
@@ -46,7 +44,7 @@ namespace SpruceBeetle.Fabricate
         {
             pManager.AddGenericParameter("Aligned Offcuts", "AOc", "Aligned Offcuts on the curve", GH_ParamAccess.list);
             pManager.AddPlaneParameter("Target Plane", "TP", "The plane where the Offcuts shall be oriented at", GH_ParamAccess.item, Plane.WorldXY);
-            pManager.AddIntegerParameter("Plane Index", "PI", "0 = Avrg, 1 = First, 2 = Second", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Plane Index", "PI", "0 = Base, 1 = First, 2 = Second, 3 = Avrg", GH_ParamAccess.item, 0);
 
             for (int i = 0; i < pManager.ParamCount; i++)
                 pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
@@ -119,6 +117,7 @@ namespace SpruceBeetle.Fabricate
             Plane sP = new Plane(localOffcut.SecondPlane);
             Plane aP = new Plane(localOffcut.AveragePlane);
             Plane maP = new Plane(localOffcut.MovedAveragePlane);
+            Plane bp = new Plane(localOffcut.BasePlane);
 
             // select a specific Offcut plane
             Plane initialPlane = new Plane();
@@ -127,7 +126,7 @@ namespace SpruceBeetle.Fabricate
             {
                 case 0:
                     {
-                        initialPlane = new Plane(offcut.AveragePlane);
+                        initialPlane = new Plane(offcut.BasePlane);
                     }
                     break;
                 case 1:
@@ -140,9 +139,14 @@ namespace SpruceBeetle.Fabricate
                         initialPlane = new Plane(offcut.SecondPlane);
                     }
                     break;
-                default:
+                case 3:
                     {
                         initialPlane = new Plane(offcut.AveragePlane);
+                    }
+                    break;
+                default:
+                    {
+                        initialPlane = new Plane(offcut.BasePlane);
                     }
                     break;
             }
@@ -159,6 +163,7 @@ namespace SpruceBeetle.Fabricate
             sP.Transform(orientation);
             aP.Transform(orientation);
             maP.Transform(orientation);
+            bp.Transform(orientation);
 
             orientedOffcut = new Offcut(localOffcut)
             {
@@ -166,7 +171,8 @@ namespace SpruceBeetle.Fabricate
                 FirstPlane = fP,
                 SecondPlane = sP,
                 AveragePlane = aP,
-                MovedAveragePlane = maP
+                MovedAveragePlane = maP,
+                BasePlane = bp
             };
         }
 

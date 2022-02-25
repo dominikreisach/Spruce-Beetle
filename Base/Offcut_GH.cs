@@ -181,6 +181,7 @@ namespace SpruceBeetle
             writer.SetPlane("sp", new GH_IO.Types.GH_Plane(Value.SecondPlane.OriginX, Value.SecondPlane.OriginY, Value.SecondPlane.OriginZ, Value.SecondPlane.XAxis.X, Value.SecondPlane.XAxis.Y, Value.SecondPlane.XAxis.Z, Value.SecondPlane.YAxis.X, Value.SecondPlane.YAxis.Y, Value.SecondPlane.YAxis.Z));
             writer.SetPlane("ap", new GH_IO.Types.GH_Plane(Value.AveragePlane.OriginX, Value.AveragePlane.OriginY, Value.AveragePlane.OriginZ, Value.AveragePlane.XAxis.X, Value.AveragePlane.XAxis.Y, Value.AveragePlane.XAxis.Z, Value.AveragePlane.YAxis.X, Value.AveragePlane.YAxis.Y, Value.AveragePlane.YAxis.Z));
             writer.SetPlane("map", new GH_IO.Types.GH_Plane(Value.MovedAveragePlane.OriginX, Value.MovedAveragePlane.OriginY, Value.MovedAveragePlane.OriginZ, Value.MovedAveragePlane.XAxis.X, Value.MovedAveragePlane.XAxis.Y, Value.MovedAveragePlane.XAxis.Z, Value.MovedAveragePlane.YAxis.X, Value.MovedAveragePlane.YAxis.Y, Value.MovedAveragePlane.YAxis.Z));
+            writer.SetPlane("bp", new GH_IO.Types.GH_Plane(Value.BasePlane.OriginX, Value.BasePlane.OriginY, Value.BasePlane.OriginZ, Value.BasePlane.XAxis.X, Value.BasePlane.XAxis.Y, Value.BasePlane.XAxis.Z, Value.BasePlane.YAxis.X, Value.BasePlane.YAxis.Y, Value.BasePlane.YAxis.Z));
             writer.SetInt32("pi", Value.PositionIndex);
 
             return true;
@@ -232,9 +233,15 @@ namespace SpruceBeetle
                 new Vector3d(ghmap.XAxis.x, ghap.XAxis.y, ghmap.XAxis.z),
                 new Vector3d(ghmap.YAxis.x, ghmap.YAxis.y, ghmap.YAxis.z));
 
+            GH_IO.Types.GH_Plane ghbp = reader.GetPlane("bp");
+            Plane bp = new Plane(
+                new Point3d(ghbp.Origin.x, ghbp.Origin.y, ghbp.Origin.z),
+                new Vector3d(ghbp.XAxis.x, ghbp.XAxis.y, ghbp.XAxis.z),
+                new Vector3d(ghbp.YAxis.x, ghbp.YAxis.y, ghbp.YAxis.z));
+
             int pi = reader.GetInt32("pi");
 
-            Value = Offcut.CreateOffcut(offcutBrep, index, x, y, z,vol, fabvol, fp, sp, ap, map, pi);
+            Value = Offcut.CreateOffcut(offcutBrep, index, x, y, z, vol, fabvol, fp, sp, ap, map, bp, pi);
 
             if (Value == null)
                 throw new Exception("Something went wrong down the road :(");

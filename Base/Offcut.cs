@@ -41,6 +41,7 @@ namespace SpruceBeetle
         public Plane FirstPlane { get; set; }
         public Plane SecondPlane { get; set; }
         public Plane AveragePlane { get; set; }
+        public Plane BasePlane { get; set; }
         public Plane MovedAveragePlane { get; set; }
         public int PositionIndex { get; set; }
 
@@ -66,12 +67,8 @@ namespace SpruceBeetle
             SecondPlane = offcut.SecondPlane;
             AveragePlane = offcut.AveragePlane;
             MovedAveragePlane = offcut.MovedAveragePlane;
+            BasePlane = offcut.BasePlane;
             PositionIndex = offcut.PositionIndex;
-        }
-
-        public Offcut(Brep offcut)
-        {
-            OffcutGeometry = offcut;
         }
 
         // constructor with index and dimensions
@@ -85,7 +82,7 @@ namespace SpruceBeetle
         }
 
         // constructor with all data
-        public Offcut (Brep offcut, double index, double x, double y, double z, double vol, double fabvol, Plane fp, Plane sp, Plane ap, Plane map, int pi)
+        public Offcut (Brep offcut, double index, double x, double y, double z, double vol, double fabvol, Plane fp, Plane sp, Plane ap, Plane map, Plane bp, int pi)
         {
             OffcutGeometry = offcut;
             Index = index;
@@ -98,6 +95,7 @@ namespace SpruceBeetle
             SecondPlane = sp;
             AveragePlane = ap;
             MovedAveragePlane = map;
+            BasePlane = bp;
             PositionIndex = pi;
         }
 
@@ -105,9 +103,9 @@ namespace SpruceBeetle
         //------------------------------------------------------------
         // CreateOffcut methods
         //------------------------------------------------------------
-        public static Offcut CreateOffcut(Brep offcut, double index, double x, double y, double z, double vol, double fabvol, Plane fp, Plane sp, Plane ap, Plane map, int pi)
+        public static Offcut CreateOffcut(Brep offcut, double index, double x, double y, double z, double vol, double fabvol, Plane fp, Plane sp, Plane ap, Plane map, Plane bp, int pi)
         {
-            Offcut createdOffcut = new Offcut(offcut, index, x, y, z, vol, fabvol, fp, sp, ap, map, pi);
+            Offcut createdOffcut = new Offcut(offcut, index, x, y, z, vol, fabvol, fp, sp, ap, map, bp, pi);
             
             return createdOffcut;
         }
@@ -118,6 +116,25 @@ namespace SpruceBeetle
             Offcut createdOffcut = new Offcut(index, x, y, z);
 
             return createdOffcut;
+        }
+
+
+        //------------------------------------------------------------
+        // ComputeBasePlane method
+        //------------------------------------------------------------
+        public static Plane ComputeBasePlane(Plane averagePlane, double x, double y, double z)
+        {
+            // assign new plane
+            Plane basePlane = new Plane(averagePlane);
+
+            // compute translation
+            var transformation = Transform.Translation(new Vector3d((averagePlane.XAxis * x / 2) + (averagePlane.YAxis * y / 2) + (-averagePlane.ZAxis * z / 2)));
+
+            // transform plane
+            basePlane.Transform(transformation);
+
+            // return base plane
+            return basePlane;
         }
 
 
@@ -139,6 +156,7 @@ namespace SpruceBeetle
                 SecondPlane = SecondPlane,
                 AveragePlane = AveragePlane,
                 MovedAveragePlane = MovedAveragePlane,
+                BasePlane = BasePlane,
                 PositionIndex = PositionIndex
             };
 

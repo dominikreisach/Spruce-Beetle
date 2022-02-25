@@ -67,6 +67,7 @@ namespace SpruceBeetle.Create
             pManager.AddPlaneParameter("Second Plane", "sp", "Second plane of the Offcut", GH_ParamAccess.list);
             pManager.AddPlaneParameter("Average Plane", "ap", "Average plane of the Offcut", GH_ParamAccess.list);
             pManager.AddPlaneParameter("Moved Average Plane", "map", "Moved average plane of the Offcut", GH_ParamAccess.list);
+            pManager.AddPlaneParameter("Base Plane", "bp", "Base plane of the Offcut", GH_ParamAccess.list);
 
             pManager.AddIntegerParameter("Position Index", "pi", "Index of the base position", GH_ParamAccess.list);
 
@@ -75,6 +76,7 @@ namespace SpruceBeetle.Create
             pManager.HideParameter(8);
             pManager.HideParameter(9);
             pManager.HideParameter(10);
+            pManager.HideParameter(11);
 
             for (int i = 0; i < pManager.ParamCount; i++)
                 pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
@@ -102,6 +104,7 @@ namespace SpruceBeetle.Create
             List<Plane> secondPlaneList = new List<Plane>();
             List<Plane> averagePlaneList = new List<Plane>();
             List<Plane> movedAveragePlaneList = new List<Plane>();
+            List<Plane> basePlaneList = new List<Plane>();
             List<int> basePositionList = new List<int>();
 
             // add all the data to the lists
@@ -150,9 +153,15 @@ namespace SpruceBeetle.Create
 
                     MovedAveragePlane:
                     if (inputOffcut[i].MovedAveragePlane == null)
-                        goto BasePosition;
+                        goto BasePlane;
                     else
                         movedAveragePlaneList.Add(inputOffcut[i].MovedAveragePlane);
+
+                    BasePlane:
+                    if (inputOffcut[i].BasePlane == null)
+                        goto BasePosition;
+                    else
+                        basePlaneList.Add(inputOffcut[i].BasePlane);
 
                     BasePosition:
                     if (inputOffcut[i].PositionIndex == null)
@@ -173,7 +182,8 @@ namespace SpruceBeetle.Create
                 DA.SetDataList(8, secondPlaneList);
                 DA.SetDataList(9, averagePlaneList);
                 DA.SetDataList(10, movedAveragePlaneList);
-                DA.SetDataList(11, basePositionList);
+                DA.SetDataList(11, basePlaneList);
+                DA.SetDataList(12, basePositionList);
             }
         }
 

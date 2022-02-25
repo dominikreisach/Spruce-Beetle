@@ -104,8 +104,6 @@ namespace SpruceBeetle.Alignment
                 Offcut localOffcut = new Offcut(offcutList[i])
                 {
                     OffcutGeometry = trimmedOffcuts[i],
-                    X = minValues[0],
-                    Y = minValues[1],
                     FabVol = trimmedOffcuts[i].GetVolume(0.0001, 0.0001),
                     MovedAveragePlane = movedAveragePlanes[i]
                 };
