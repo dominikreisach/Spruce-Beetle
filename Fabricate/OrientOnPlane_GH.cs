@@ -45,7 +45,7 @@ namespace SpruceBeetle.Fabricate
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Aligned Offcuts", "AOc", "Aligned Offcuts on the curve", GH_ParamAccess.list);
-            pManager.AddPlaneParameter("Target Plane", "TP", "The plane where the Offcuts shall be oriented at", GH_ParamAccess.item);
+            pManager.AddPlaneParameter("Target Plane", "TP", "The plane where the Offcuts shall be oriented at", GH_ParamAccess.item, Plane.WorldXY);
             pManager.AddIntegerParameter("Plane Index", "PI", "0 = Avrg, 1 = First, 2 = Second", GH_ParamAccess.item, 0);
 
             for (int i = 0; i < pManager.ParamCount; i++)
@@ -56,11 +56,14 @@ namespace SpruceBeetle.Fabricate
         // parameter outputs
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            
-            pManager.AddBrepParameter("Oriented Offcuts", "OOc", "Offcuts oriented to the specified plane", GH_ParamAccess.tree);
 
-            pManager.HideParameter(0);
-            pManager[0].WireDisplay = GH_ParamWireDisplay.faint;
+            pManager.AddGenericParameter("Oriented Offcuts", "OOc", "Offcuts oriented to the specified plane", GH_ParamAccess.list);
+            pManager.AddBrepParameter("Offcut Stock", "OcS", "The stock model of each Offcut", GH_ParamAccess.list);
+
+            pManager.HideParameter(1);
+
+            for (int i = 0; i < pManager.ParamCount; i++)
+                pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
         }
 
         
@@ -69,7 +72,7 @@ namespace SpruceBeetle.Fabricate
         {
             // variables to reference the input parameters to
             List<Offcut> offcutData = new List<Offcut>();
-            Plane targetPlane = new Plane();
+            Plane targetPlane = Plane.WorldXY;
             int planeIndex = 0;
 
             // access input parameter
@@ -78,38 +81,44 @@ namespace SpruceBeetle.Fabricate
             if (!DA.GetData(2, ref planeIndex)) return;
 
             // initialise lists to store all the data
-            DataTree<Brep> outputOriginOffcuts = new DataTree<Brep>();
+            List<Brep> outputStock = new List<Brep>();
+            List<Offcut_GH> orientedOffcuts = new List<Offcut_GH>();
 
             // iterate over aligned Offcuts to move them to the world origin
             for (int i = 0; i < offcutData.Count; i++)
             {
-                // create path for outputOriginOffcuts
-                GH_Path originPath = new GH_Path(i);
-                outputOriginOffcuts.AddRange(OffcutToOrigin(offcutData[i], targetPlane, planeIndex), originPath);
+                // Call OrientOffcut method
+                OrientOffcut(offcutData[i], targetPlane, planeIndex, out Brep offcutStock, out Offcut orientedOffcut);
+
+                // add stock model to list
+                outputStock.Add(offcutStock);
+
+                // add oriented Offcut to list
+                orientedOffcuts.Add(new Offcut_GH(orientedOffcut));
             }
 
             // access output parameters
-            DA.SetDataTree(0, outputOriginOffcuts);
+            DA.SetDataList(0, orientedOffcuts);
+            DA.SetDataList(1, outputStock);
         }
 
 
         //------------------------------------------------------------
-        // OffcutToOrigin method
+        // OrientOffcut method
         //------------------------------------------------------------
-        protected List<Brep> OffcutToOrigin(Offcut offcut, Plane targetPlane, int planeIndex)
+        protected void OrientOffcut(Offcut offcut, Plane targetPlane, int planeIndex, out Brep offcutStock, out Offcut orientedOffcut)
         {
             // call CreateOffcutBrep method
-            Brep originOffcut = Offcut.CreateOffcutBrep(offcut, offcut.AveragePlane, offcut.PositionIndex);
+            offcutStock = Offcut.CreateOffcutBrep(offcut, offcut.AveragePlane, offcut.PositionIndex);
 
-            // duplicate brep to avoid any problems
-            Brep movedOffcut = offcut.OffcutGeometry.DuplicateBrep();
+            // duplicate Offcut data to avoid any problems
+            Offcut localOffcut = new Offcut(offcut);
 
-            // add return breps to list
-            List<Brep> returnBreps = new List<Brep>
-            {
-                movedOffcut,
-                originOffcut
-            };
+            Brep localBrep = localOffcut.OffcutGeometry.DuplicateBrep();
+            Plane fP = new Plane(localOffcut.FirstPlane);
+            Plane sP = new Plane(localOffcut.SecondPlane);
+            Plane aP = new Plane(localOffcut.AveragePlane);
+            Plane maP = new Plane(localOffcut.MovedAveragePlane);
 
             // select a specific Offcut plane
             Plane initialPlane = new Plane();
@@ -141,16 +150,24 @@ namespace SpruceBeetle.Fabricate
             // orient Offcuts
             Transform orientation = Transform.PlaneToPlane(initialPlane, targetPlane);
 
-            // output transformed Offcut for fabrication
-            if (movedOffcut.Transform(orientation) && originOffcut.Transform(orientation))
+            // transform stock model
+            offcutStock.Transform(orientation);
+
+            // transform geometrical Offcut data
+            localBrep.Transform(orientation);
+            fP.Transform(orientation);
+            sP.Transform(orientation);
+            aP.Transform(orientation);
+            maP.Transform(orientation);
+
+            orientedOffcut = new Offcut(localOffcut)
             {
-                return returnBreps;
-            }
-            else
-            {
-                AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Something went wrong with the transformation!");
-                return null;
-            }
+                OffcutGeometry = localBrep,
+                FirstPlane = fP,
+                SecondPlane = sP,
+                AveragePlane = aP,
+                MovedAveragePlane = maP
+            };
         }
 
 
