@@ -26,8 +26,6 @@
     <a href="">View Demo</a>
   <span> · </span>
     <a href="https://github.com/DominikReisach/Spruce-Beetle/issues/">Report Bug</a>
-  <span> · </span>
-    <a href="https://github.com/DominikReisach/Spruce-Beetle/issues/">Request Feature</a>
   </h4>
 </div>
 
@@ -37,7 +35,7 @@
 # :space_invader: Table of Contents
 
 - [About](#astonished-About)
-  * [Grasshopper Components](#bug-grasshopper-components)  
+  * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
 - [ToDo](#heavy_check_mark-ToDo)
 - [Miscellaneous](#thought_balloon-Miscellaneous)
@@ -49,7 +47,7 @@
 
 # :astonished: About
 
-## :bug: Grasshopper Components
+## :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
 
 A description of each component and example files will follow soon. This toolkit is still <i>wip</i> and will be extended!
@@ -61,7 +59,8 @@ A description of each component and example files will follow soon. This toolkit
 - [ ] JSON serialization
 - [ ] Add documentation
 - [ ] Improve intersection joints
-- [ ] Find more bugs :)
+- [ ] Publish to Food4Rhino
+- [ ] Find more bugs
 
 # :thought_balloon: Miscellaneous
 
