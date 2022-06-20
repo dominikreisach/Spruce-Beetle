@@ -5,7 +5,7 @@
   <h1>Spruce Beetle</h1>
   
   <p>
-    A toolkit for working with timber offcuts in <a href="https://www.rhino3d.com">Rhino|Grasshopper.</a>
+    A toolkit for working with timber offcuts in <a href="https://www.rhino3d.com">Rhino/Grasshopper.</a>
   </p>
   
 <!-- Badges -->
@@ -32,7 +32,7 @@
 <br />
 
 <!-- ToC -->
-# :space_invader: Table of Contents
+# :beetle: Table of Contents
 
 - [About](#astonished-About)
   * [Grasshopper Components](#cricket-grasshopper-components)  
@@ -43,7 +43,7 @@
     * [Acknowledgements](#sparkles-Acknowledgements)
 - [Citing](#v-Citing)
     <!--* [Upcycle Timber](#mortar_board-Upcycle-Timber)-->
-    * [Spruce Beetle](#beetle-Spruce-Beetle)
+    * [Spruce Beetle](#space_invader-Spruce-Beetle)
 
 # :astonished: About
 
@@ -78,8 +78,12 @@ The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar
 ```
 ``` -->
 
-### :beetle: Spruce Beetle
+### :space_invader: Spruce Beetle
 ```
-Dominik Reisach (2022).
-URL https://github.com/DominikReisach/Spruce-Beetle
+@software{spruce_beetle,
+    title={Spruce Beetle},
+    author={Dominik Reisach},
+    year={2022},
+    url={https://github.com/DominikReisach/Spruce-Beetle}
+}
 ```
