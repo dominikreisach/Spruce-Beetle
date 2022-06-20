@@ -32,9 +32,9 @@
 <br />
 
 <!-- ToC -->
-# :beetle: Table of Contents
+# :beetle: Contents
 
-- [About](#astonished-About)
+- [About](#astonished-What?)
   * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
 - [ToDo](#heavy_check_mark-ToDo)
@@ -45,7 +45,7 @@
     <!--* [Upcycle Timber](#mortar_board-Upcycle-Timber)-->
     * [Spruce Beetle](#space_invader-Spruce-Beetle)
 
-# :astonished: About
+# :astonished: What?
 
 ## :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
@@ -68,7 +68,7 @@ A description of each component and example files will follow soon. This toolkit
 Copyright &copy; 2022, Dominik Reisach
 
 ## :sparkles: Acknowledgements
-This toolbox is being developed at the [Bauhaus-University Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
+This toolbox is being developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A design-to-fabrication workflow for free-form timber structures with offcuts</i>.
 
 The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), and [Professor Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
