@@ -63,6 +63,11 @@ A description of each component and example files will follow soon. This toolkit
 
 ## :copyright: License
 Copyright &copy; 2022, Dominik Reisach
+<p>
+<a href="https://github.com/DominikReisach/Spruce-Beetle/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/DominikReisach/Spruce-Beetle.svg" alt="license" />
+</a>
+</p>
 
 ## :sparkles: Acknowledgements
 This toolbox is being developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
