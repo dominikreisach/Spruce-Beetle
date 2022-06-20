@@ -5,12 +5,12 @@
   <h1>Spruce Beetle</h1>
   
   <p>
-    A toolkit for working with timber offcuts in [Rhino/Grasshopper](https://www.rhino3d.com/).
+    A toolkit for working with timber offcuts in <a href="https://www.rhino3d.com">Rhino|Grasshopper.</a>
   </p>
   
 <!-- Badges -->
 <p>
-  <a href="">
+  <a href="https://github.com/DominikReisach/Spruce-Beetle/commits/main">
     <img src="https://img.shields.io/github/last-commit/DominikReisach/Spruce-Beetle" alt="last update" />
   </a>
   <a href="https://github.com/DominikReisach/Spruce-Beetle/issues/">
@@ -34,9 +34,9 @@
 <br />
 
 <!-- ToC -->
-# Table of Contents
+# :space_invader: Table of Contents
 
-- [About](#memo-About)
+- [About](#astonished-About)
   * [Grasshopper Components](#bug-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
 - [ToDo](#heavy_check_mark-ToDo)
@@ -45,9 +45,9 @@
     * [Acknowledgements](#sparkles-Acknowledgements)
 - [Citing](#v-Citing)
     <!--* [Upcycle Timber](#mortar_board-Upcycle-Timber)-->
-    * [Spruce Beetle](#space_invader-Spruce-Beetle)
+    * [Spruce Beetle](#beetle-Spruce-Beetle)
 
-# :memo: About
+# :astonished: About
 
 ## :bug: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
@@ -62,7 +62,6 @@ A description of each component and example files will follow soon. This toolkit
 - [ ] Add documentation
 - [ ] Improve intersection joints
 - [ ] Find more bugs :)
-- [x] :beetle:
 
 # :thought_balloon: Miscellaneous
 
@@ -80,7 +79,7 @@ The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar
 ```
 ``` -->
 
-### :space_invader: Spruce Beetle
+### :beetle: Spruce Beetle
 ```
 Dominik Reisach (2022).
 URL https://github.com/DominikReisach/Spruce-Beetle
