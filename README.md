@@ -5,7 +5,7 @@
   <h1>Spruce Beetle</h1>
   
   <p>
-    A toolkit for working with timber offcuts in <a href="https://www.rhino3d.com">Rhino/Grasshopper.</a>
+    A toolkit for designing with timber offcuts in <a href="https://www.rhino3d.com">Rhino/Grasshopper.</a>
   </p>
   
 <!-- Badges -->
@@ -34,35 +34,32 @@
 <!-- ToC -->
 # :beetle: Contents
 
-- [About](#astonished-What?)
+- [What?](#astonished-What?)
   * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
 - [ToDo](#heavy_check_mark-ToDo)
-- [Miscellaneous](#thought_balloon-Miscellaneous)
-    * [License](#copyright-License)
-    * [Acknowledgements](#sparkles-Acknowledgements)
+- [License](#copyright-License)
+- [Acknowledgements](#sparkles-Acknowledgements)
 - [Citing](#v-Citing)
     <!--* [Upcycle Timber](#mortar_board-Upcycle-Timber)-->
     * [Spruce Beetle](#space_invader-Spruce-Beetle)
 
-# :astonished: What?
+## :astonished: What?
 
-## :cricket: Grasshopper Components
+### :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
 
 A description of each component and example files will follow soon. This toolkit is still <i>wip</i> and will be extended!
 
-## :dizzy_face: Demonstration
+### :dizzy_face: Demonstration
 
-# :heavy_check_mark: ToDo
+## :heavy_check_mark: ToDo
 
 - [ ] JSON serialization
 - [ ] Add documentation
 - [ ] Improve intersection joints
 - [ ] Publish to Food4Rhino
 - [ ] Find more bugs
-
-# :thought_balloon: Miscellaneous
 
 ## :copyright: License
 Copyright &copy; 2022, Dominik Reisach
@@ -73,7 +70,7 @@ This toolbox is being developed at the [Bauhaus-Universität Weimar](https://www
 
 The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), and [Professor Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
 
-# :v: Citing 
+## :v: Citing 
 <!-- ### :mortar_board: Upcycle Timber
 ```
 ``` -->
