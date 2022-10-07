@@ -19,6 +19,9 @@
   <a href="https://github.com/DominikReisach/Spruce-Beetle/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/DominikReisach/Spruce-Beetle.svg" alt="license" />
   </a>
+  <a href="https://zenodo.org/badge/latestdoi/454536126">
+    <img src="https://zenodo.org/badge/454536126.svg" alt="DOI" />
+  </a>
 </p>
    
 <!-- Quick Links -->
@@ -82,10 +85,11 @@ The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar
 
 ### :space_invader: Spruce Beetle
 ```
-@software{spruce_beetle,
+@misc{spruce_beetle,
     title={Spruce Beetle},
     author={Dominik Reisach},
     year={2022},
+    doi={10.5281/zenodo.7157251 }
     url={https://github.com/DominikReisach/Spruce-Beetle}
 }
 ```
