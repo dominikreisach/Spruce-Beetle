@@ -26,7 +26,7 @@
    
 <!-- Quick Links -->
 <h4>
-    <a href="">View Demo</a>
+    <a href="#">View Demo</a>
   <span> · </span>
     <a href="https://github.com/DominikReisach/Spruce-Beetle/issues/">Report Bug</a>
   </h4>
@@ -61,8 +61,8 @@ A description of each component and example files will follow soon. This toolkit
 - [ ] JSON serialization
 - [ ] Add documentation
 - [ ] Improve intersection joints
-- [ ] Publish to Food4Rhino
-- [ ] Find more bugs
+- [ ] Publish to Rhino Package Manager
+- [ ] Add Parallel Computing (No Screen-Freezing)
 
 ## :copyright: License
 Copyright &copy; 2022, Dominik Reisach
@@ -76,7 +76,7 @@ Copyright &copy; 2022, Dominik Reisach
 This toolbox is being developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A design-to-fabrication workflow for free-form timber structures with offcuts</i>.
 
-The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), and [Professor Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
+The thesis was supervised by [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
 
 ## :v: Citing 
 <!-- ### :mortar_board: Upcycle Timber
