@@ -37,17 +37,16 @@
 <!-- ToC -->
 # :beetle: Contents
 
-- [What?](#astonished-What?)
+- [What](#astonished-what)
   * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
-- [ToDo](#heavy_check_mark-ToDo)
-- [License](#copyright-License)
-- [Acknowledgements](#sparkles-Acknowledgements)
-- [Citing](#v-Citing)
-    <!--* [Upcycle Timber](#mortar_board-Upcycle-Timber)-->
-    * [Spruce Beetle](#space_invader-Spruce-Beetle)
+- [License](#copyright-license)
+- [Acknowledgements](#sparkles-acknowledgements)
+- [Citing](#v-citing)
+    * [Conference Paper](#mortar_board-conference-paper)
+    * [Plugin](#space_invader-plugin)
 
-## :astonished: What?
+## :astonished: What
 
 ### :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
@@ -55,14 +54,7 @@
 A description of each component and example files will follow soon. This toolkit is still <i>wip</i> and will be extended!
 
 ### :dizzy_face: Demonstration
-
-## :heavy_check_mark: ToDo
-
-- [ ] JSON serialization
-- [ ] Add documentation
-- [ ] Improve intersection joints
-- [ ] Publish to Rhino Package Manager
-- [ ] Add Parallel Computing (No Screen-Freezing)
+<a><i>wip</i><a/>
 
 ## :copyright: License
 Copyright &copy; 2022, Dominik Reisach
@@ -73,17 +65,29 @@ Copyright &copy; 2022, Dominik Reisach
 </p>
 
 ## :sparkles: Acknowledgements
-This toolbox is being developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
-<br><i>Upcycle Timber: A design-to-fabrication workflow for free-form timber structures with offcuts</i>.
+This toolbox has been developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
+<br><i>Upcycle Timber: A Design-to-Fabrication Workflow for Free-Form Timber Structures with Offcuts</i>.
 
 The thesis was supervised by [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
 
 ## :v: Citing 
-<!-- ### :mortar_board: Upcycle Timber
+### :mortar_board: Conference Paper
 ```
-``` -->
+@incollection{reisachOffcuts2023,
+  title = {A {{Design-to-Fabrication Workflow}} for {{Free-Form Timber Structures Using Offcuts}}},
+  booktitle = {Computer-{{Aided Architectural Design}}. {{INTERCONNECTIONS}}: {{Co-computing Beyond Boundaries}}},
+  author = {Reisach, Dominik and Sch{\"u}tz, Stephan and Willmann, Jan and Schneider, Sven},
+  editor = {Turrin, Michela and Andriotis, Charalampos and Rafiee, Azarakhsh},
+  year = {2023},
+  volume = {1819},
+  pages = {361--375},
+  publisher = {{Springer Nature Switzerland}},
+  address = {{Cham}},
+  doi = {10.1007/978-3-031-37189-9_24},
+}
+```
 
-### :space_invader: Spruce Beetle
+### :space_invader: Plugin
 ```
 @misc{spruce_beetle,
     title={Spruce Beetle},
