@@ -68,22 +68,24 @@ Copyright &copy; 2022, Dominik Reisach
 This toolbox has been developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A Design-to-Fabrication Workflow for Free-Form Timber Structures with Offcuts</i>.
 
-The thesis was supervised by [Professor Dr.-Ing. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr.-Ing. Stephan Schütz](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/entwerfen-und-erproben/).
+The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr. Stephan Schütz](https://www.strukturstudio.de/).
 
 ## :v: Citing 
-### :mortar_board: Conference Paper
+### :mortar_board: [Conference Paper](https://doi.org/10.1007/978-3-031-37189-9_24)
 ```
-@incollection{reisachOffcuts2023,
+@incollection{reisachDesigntoFabricationWorkflowFreeForm2023,
   title = {A {{Design-to-Fabrication Workflow}} for {{Free-Form Timber Structures Using Offcuts}}},
-  booktitle = {Computer-{{Aided Architectural Design}}. {{INTERCONNECTIONS}}: {{Co-computing Beyond Boundaries}}},
+  booktitle = {Computer-{{Aided Architectural Design}}. {{INTERCONNECTIONS}}: {{Co-computing Beyond Boundaries}}. {CAAD Futures 2023}},
   author = {Reisach, Dominik and Sch{\"u}tz, Stephan and Willmann, Jan and Schneider, Sven},
   editor = {Turrin, Michela and Andriotis, Charalampos and Rafiee, Azarakhsh},
   year = {2023},
+  series = {Communications in {{Computer}} and {{Information Science}}},
   volume = {1819},
   pages = {361--375},
-  publisher = {{Springer Nature Switzerland}},
+  publisher = {{Springer}},
   address = {{Cham}},
   doi = {10.1007/978-3-031-37189-9_24},
+  isbn = {978-3-031-37189-9},
 }
 ```
 
@@ -93,7 +95,7 @@ The thesis was supervised by [Professor Dr.-Ing. Sven Schneider](https://www.uni
     title={Spruce Beetle},
     author={Dominik Reisach},
     year={2022},
-    doi={10.5281/zenodo.7157251 }
+    doi={10.5281/zenodo.7157251}
     url={https://github.com/DominikReisach/Spruce-Beetle}
 }
 ```
