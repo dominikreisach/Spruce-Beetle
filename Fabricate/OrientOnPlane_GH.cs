@@ -34,7 +34,7 @@ namespace SpruceBeetle.Fabricate
     public class OrientOnPlane_GH : GH_Component
     {
         public OrientOnPlane_GH()
-          : base("Orient on Plane", "OrientOc", "Orients the Offcuts to a specified planee for fabrication purposes", "Spruce Beetle", "    Fabricate")
+          : base("Orient on Plane", "OrientOc", "Orients the Offcuts to a specified plane for fabrication purposes", "Spruce Beetle", "    Fabricate")
         {
         }
 

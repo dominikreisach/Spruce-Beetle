@@ -40,10 +40,10 @@ using CromulentBisgetti.ContainerPacking;
 
 namespace SpruceBeetle.Packing
 {
-    public class ContainerPacking_GH : GH_Component
+    public class BinPackingCS_GH : GH_Component
     {
-        public ContainerPacking_GH()
-          : base("Container Packing EB-AFIT", "PackCon", "The EB-AFIT algorithm supports full item rotation and has excellent runtime performance and container utilization",
+        public BinPackingCS_GH()
+          : base("Bin Packing EB-AFIT", "PackBinC#", "The EB-AFIT algorithm supports full item rotation and has excellent runtime performance and container utilization",
               "Spruce Beetle", "   Packing")
         {
         }
@@ -82,7 +82,7 @@ namespace SpruceBeetle.Packing
 
             // access input parameters
             if(!DA.GetDataList(0, offcutData)) return;
-            if (!DA.GetData(0, ref boundingBox)) return;
+            if (!DA.GetData(1, ref boundingBox)) return;
 
             // create bounding box at origin
             Box originBox = new Box(Plane.WorldXY, new Interval(0, boundingBox.X.T1), new Interval(0, boundingBox.Y.T1), new Interval(0, boundingBox.Z.T1));
@@ -198,7 +198,7 @@ namespace SpruceBeetle.Packing
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
         // add icon
-        protected override System.Drawing.Bitmap Icon => Properties.Resources._24x24_ContainerPacking;
+        protected override System.Drawing.Bitmap Icon => Properties.Resources._24x24_BinPackingCS;
 
         // component giud
         public override Guid ComponentGuid => new Guid("99C99B34-2B2F-418D-AB51-F3A139064C10");

@@ -17,10 +17,10 @@
 		
   <ItemGroup>
     <None Remove="Resources\24x24_BasicAlignment.png" />
-    <None Remove="Resources\24x24_BinPacking.png" />
+    <None Remove="Resources\24x24_BinPackingCS.png" />
+    <None Remove="Resources\24x24_BinPackingPy.png" />
     <None Remove="Resources\24x24_BinPacking_EBAFIT.png" />
     <None Remove="Resources\24x24_ConstructOffcut.png" />
-    <None Remove="Resources\24x24_ContainerPacking.png" />
     <None Remove="Resources\24x24_CreateJoints.png" />
     <None Remove="Resources\24x24_CSVCoord.png" />
     <None Remove="Resources\24x24_CSVFiles.png" />
@@ -70,13 +70,13 @@
     <EmbeddedResource Include="Resources\24x24_BasicAlignment.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\24x24_BinPacking.png">
+    <EmbeddedResource Include="Resources\24x24_BinPackingPy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_ConstructOffcut.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\24x24_ContainerPacking.png">
+    <EmbeddedResource Include="Resources\24x24_BinPackingCS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\24x24_CSVCoord.png">
@@ -142,13 +142,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="7.14.22010.17001" IncludeAssets="compile;build" />
+    <PackageReference Include="Grasshopper" Version="7.15.22039.13001" IncludeAssets="compile;build" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0">
       <IncludeAssets></IncludeAssets>
     </PackageReference>
-    <PackageReference Include="pythonnet" Version="3.0.0-preview2022-01-03">
-      <IncludeAssets></IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   
   <ItemGroup>
@@ -171,9 +169,6 @@
       <HintPath>bin\Debug\net48\CromulentBisgetti.ContainerPacking.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Python.Runtime">
-      <HintPath>bin\Debug\net48\Python.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   
   <PropertyGroup Condition="$(Configuration) == 'Debug' AND $([MSBuild]::IsOSPlatform(Windows))">

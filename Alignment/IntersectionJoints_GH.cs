@@ -49,9 +49,9 @@ namespace SpruceBeetle.Alignment
             pManager.AddGenericParameter("First Alignment", "FA", "First list of aligned Offcuts", GH_ParamAccess.list);
             pManager.AddGenericParameter("Second Alignment", "SA", "Second list of aligned Offcuts", GH_ParamAccess.list);
             pManager.AddPointParameter("Intersection Point", "IP", "Intersection point between the two alignments", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Rotate Joint", "RJ", "Rotate the joint the alter its direction", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Rotate Joint", "RJ", "Rotate the joint to alter its direction", GH_ParamAccess.item, 0.0);
             pManager.AddNumberParameter("Width", "W", "The width of the lap joint", GH_ParamAccess.item, 1.0);
-            pManager.AddIntegerParameter("Joint Type", "JT", "Adds the specified joint type: 0 = spline joint, 1 = cross-lap joint", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Joint Type", "JT", "Adds the specified joint type: 0 = spline joint, 1 = cross-lap joint", GH_ParamAccess.item, 1);
 
             for (int i = 0; i < pManager.ParamCount; i++)
                 pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
@@ -63,7 +63,6 @@ namespace SpruceBeetle.Alignment
         {
             pManager.AddGenericParameter("Offcuts", "Oc", "List of aligned and intersected Offcuts", GH_ParamAccess.tree);
             pManager.AddGenericParameter("Intersection Offcuts", "IOc", "List of intersecting Offcuts", GH_ParamAccess.tree);
-            pManager.AddBrepParameter("B", "B", "B", GH_ParamAccess.list);
 
             for (int i = 0; i < pManager.ParamCount; i++)
                 pManager[i].WireDisplay = GH_ParamWireDisplay.faint;
@@ -217,7 +216,6 @@ namespace SpruceBeetle.Alignment
             // access output parameters
             DA.SetDataTree(0, offcutGHList);
             DA.SetDataTree(1, intOffcutGHList);
-            DA.SetDataList(2, joints);
         }
 
 

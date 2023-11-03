@@ -73,9 +73,19 @@ namespace SpruceBeetle.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _24x24_BinPacking {
+        internal static System.Drawing.Bitmap _24x24_BinPackingCS {
             get {
-                object obj = ResourceManager.GetObject("_24x24_BinPacking", resourceCulture);
+                object obj = ResourceManager.GetObject("_24x24_BinPackingCS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _24x24_BinPackingPy {
+            get {
+                object obj = ResourceManager.GetObject("_24x24_BinPackingPy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,16 +96,6 @@ namespace SpruceBeetle.Properties {
         internal static System.Drawing.Bitmap _24x24_ConstructOffcut {
             get {
                 object obj = ResourceManager.GetObject("_24x24_ConstructOffcut", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _24x24_ContainerPacking {
-            get {
-                object obj = ResourceManager.GetObject("_24x24_ContainerPacking", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
