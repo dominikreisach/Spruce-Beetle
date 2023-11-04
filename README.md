@@ -40,7 +40,6 @@
 - [What](#astonished-what)
   * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Demonstration](#dizzy_face-demonstration)
-- [License](#copyright-license)
 - [Acknowledgements](#sparkles-acknowledgements)
 - [Citing](#v-citing)
     * [Conference Paper](#mortar_board-conference-paper)
@@ -56,16 +55,8 @@ A description of each component and example files will follow soon. This toolkit
 ### :dizzy_face: Demonstration
 <a><i>wip</i><a/>
 
-## :copyright: License
-Copyright &copy; 2022, Dominik Reisach
-<p>
-<a href="https://github.com/DominikReisach/Spruce-Beetle/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/DominikReisach/Spruce-Beetle.svg" alt="license" />
-</a>
-</p>
-
 ## :sparkles: Acknowledgements
-This toolbox has been developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
+This toolbox has been developed at the [Bauhaus University Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A Design-to-Fabrication Workflow for Free-Form Timber Structures with Offcuts</i>.
 
 The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr. Stephan Schütz](https://www.strukturstudio.de/).
