@@ -85,8 +85,8 @@ The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weim
 @misc{spruce_beetle,
     title={Spruce Beetle},
     author={Dominik Reisach},
-    year={2022},
-    doi={10.5281/zenodo.7157251}
+    year={2023},
+    doi={10.5281/zenodo.10071468}
     url={https://github.com/DominikReisach/Spruce-Beetle}
 }
 ```
