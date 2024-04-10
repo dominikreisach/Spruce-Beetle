@@ -23,6 +23,7 @@
     <img src="https://zenodo.org/badge/454536126.svg" alt="DOI" />
   </a>
 </p>
+</div>
 
 <br />
 
