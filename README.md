@@ -91,7 +91,7 @@ The following documentation is created with the files located under [Documentati
   <img src="Documentation/Examples/sprucebeetle_examples_2.png" alt="Example designs." />
 </div>
 
-## :recycle: Reproduce the Offcut Tales Demonstrator
+## :recycle: Reproduce the *Offcut Tales* Demonstrator
 
 <div align="center">
   <img src="Documentation/Reproduce/offcut_tales_photo.jpg" alt="A photograph of the Offcut Tales demonstrator." />
