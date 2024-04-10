@@ -30,7 +30,8 @@
 <!-- ToC -->
 # :beetle: Contents
 
-- [What](#astonished-about)
+- [About](#astonished-about)
+  * [Installation](#gear-installation)  
   * [Grasshopper Components](#cricket-grasshopper-components)  
   * [Reproduce *Offcut Tales*](#hammer-reproduce-the-offcut-tales-demonstrator)
 - [Acknowledgements](#sparkles-acknowledgements)
@@ -38,9 +39,11 @@
     * [Conference Paper](#mortar_board-conference-paper)
     * [Plugin](#space_invader-plugin)
 
-## :astonished: About
+# :astonished: About
 
-### :gear: Installation
+*SpruceBeetle* is a plugin designed for use within the [Rhino/Grasshopper](https://www.rhino3d.com) environment that facilitates reusing and repurposing waste timber, specifically timber offcuts. Provided with dimensional data about the material, this plugin streamlines the process of integrating the reclaimed material into curve-based designs,accommodating both linear or double-curved forms efficiently. Furthermore, it generates dry timber joints between components and simplifies the creation of fabrication data. Notably, *SpruceBeetle* is material agnostic, making it adaptable for use with various types of materials.
+
+## :gear: Installation
 
 Using *SpruceBeetle* requires you to have a [Rhino](https://www.rhino3d.com) 7 or 8 installation with a valid license. *SpruceBeetle* works on both Windows and MacOS.
 
@@ -50,12 +53,12 @@ To install *SpruceBeetle*, you can either
 
 2. download it via Rhino's *Package Manager*.
 
-### :cricket: Grasshopper Components
+## :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
 
-### :hammer: Reproduce the Offcut Tales Demonstrator
+## :hammer: Reproduce the Offcut Tales Demonstrator
 
-All files to reproduce the `Offcut Tales` demonstrator are located under [Documentation/Reproduce](https://github.com/dominikreisach/Spruce-Beetle/tree/main/Documentation/Reproduce). These files include:
+All files to reproduce the *Offcut Tales* demonstrator are located under [Documentation/Reproduce](https://github.com/dominikreisach/Spruce-Beetle/tree/main/Documentation/Reproduce). These files include:
 
 1. A Rhino file with the geometric data: `offcut_tales.3dm`
 2. A plattform-independent file containing the geometric data: `offcut_tales.obj`
@@ -68,14 +71,14 @@ In the files `offcut_tales.3dm` and `offcut_tales.obj`, you will find the geomet
   <img src="Documentation/Reproduce/offcut_tales.png" alt="Screenshot of a Grasshopper canvas" />
 </div>
 
-## :sparkles: Acknowledgements
+# :sparkles: Acknowledgements
 This toolbox has been developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A Design-to-Fabrication Workflow for Free-Form Timber Structures with Offcuts</i>.
 
 The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr. Stephan Schütz](https://www.strukturstudio.de/).
 
-## :v: Citing 
-### :mortar_board: [Conference Paper](https://doi.org/10.1007/978-3-031-37189-9_24)
+# :v: Citing 
+## :mortar_board: [Conference Paper](https://doi.org/10.1007/978-3-031-37189-9_24)
 ```
 @incollection{reisachDesigntoFabricationWorkflowFreeForm2023,
   title = {A {Design-to-Fabrication Workflow} for {Free-Form Timber Structures Using Offcuts}},
@@ -93,7 +96,7 @@ The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weim
 }
 ```
 
-### :space_invader: [Plugin](https://doi.org/10.5281/zenodo.10071468)
+## :space_invader: [Plugin](https://doi.org/10.5281/zenodo.10071468)
 ```
 @misc{spruce_beetle,
     title={Spruce Beetle},
