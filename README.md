@@ -33,6 +33,7 @@
 - [About](#astonished-about)
   * [Installation](#gear-installation)  
   * [Grasshopper Components](#cricket-grasshopper-components)  
+  * [Examples and Documentation](#construction-examples-and-documentation)  
   * [Reproduce *Offcut Tales*](#recycle-reproduce-the-offcut-tales-demonstrator)
 - [Acknowledgements](#sparkles-acknowledgements)
 - [Citing](#v-citing)
@@ -54,7 +55,41 @@ To install *SpruceBeetle*, you can either
 2. download it via Rhino's *Package Manager*.
 
 ## :cricket: Grasshopper Components
-<img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
+<div align="center">
+  <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
+</div>
+
+## :construction: Examples and Documentation
+
+The following documentation is created with the files located under [Documentation/Examples](https://github.com/dominikreisach/Spruce-Beetle/tree/main/Documentation/Examples), i.e., `sprucebeetle_examples.3dm` and `sprucebeetle_examples.gh`.
+
+### Create Offcut Instances
+
+<div align="center">
+  <img src="Documentation/Examples/sprucebeetle_example_offcuts.png" alt="Grasshopper canvas showing how to create offcut instances from data." />
+</div>
+
+### Exemplary Workflow Alignment
+
+<div align="center">
+  <img src="Documentation/Examples/sprucebeetle_example_workflow.png" alt="Grasshopper canvas showing an example alignment workflow." />
+</div>
+
+### Exemplary Workflow Bin-Packing
+
+<div align="center">
+  <img src="Documentation/Examples/sprucebeetle_example_packing.png" alt="Grasshopper canvas showing an example workflow for 3D bin-packing." />
+</div>
+
+### Example Designs
+
+<div align="center">
+  <img src="Documentation/Examples/sprucebeetle_examples_1.png" alt="Example designs." />
+</div>
+
+<div align="center">
+  <img src="Documentation/Examples/sprucebeetle_examples_2.png" alt="Example designs." />
+</div>
 
 ## :recycle: Reproduce the Offcut Tales Demonstrator
 
