@@ -33,7 +33,7 @@
 - [About](#astonished-about)
   * [Installation](#gear-installation)  
   * [Grasshopper Components](#cricket-grasshopper-components)  
-  * [Reproduce *Offcut Tales*](#hammer-reproduce-the-offcut-tales-demonstrator)
+  * [Reproduce *Offcut Tales*](#recycle-reproduce-the-offcut-tales-demonstrator)
 - [Acknowledgements](#sparkles-acknowledgements)
 - [Citing](#v-citing)
     * [Conference Paper](#mortar_board-conference-paper)
@@ -56,7 +56,7 @@ To install *SpruceBeetle*, you can either
 ## :cricket: Grasshopper Components
 <img src=https://github.com/DominikReisach/Spruce-Beetle/blob/main/Resources/imgs/sb_components.png>
 
-## :hammer: Reproduce the Offcut Tales Demonstrator
+## :recycle: Reproduce the Offcut Tales Demonstrator
 
 All files to reproduce the *Offcut Tales* demonstrator are located under [Documentation/Reproduce](https://github.com/dominikreisach/Spruce-Beetle/tree/main/Documentation/Reproduce). These files include:
 
