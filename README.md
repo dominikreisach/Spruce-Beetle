@@ -93,6 +93,14 @@ The following documentation is created with the files located under [Documentati
 
 ## :recycle: Reproduce the Offcut Tales Demonstrator
 
+<div align="center">
+  <img src="Documentation/Reproduce/offcut_tales_photo" alt="A photograph of the Offcut Tales demonstrator." />
+</div>
+
+<div align="center">
+  <img src="Documentation/Reproduce/offcut_tales_design" alt="A photograph of the Offcut Tales demonstrator." />
+</div>
+
 All files to reproduce the *Offcut Tales* demonstrator are located under [Documentation/Reproduce](https://github.com/dominikreisach/Spruce-Beetle/tree/main/Documentation/Reproduce). These files include:
 
 1. A Rhino file with the geometric data: `offcut_tales.3dm`
