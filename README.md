@@ -118,7 +118,7 @@ In the files `offcut_tales.3dm` and `offcut_tales.obj`, you will find the geomet
 This toolbox has been developed at the [Bauhaus-Universität Weimar](https://www.uni-weimar.de/en), Germany, in the scope of the master's thesis
 <br><i>Upcycle Timber: A Design-to-Fabrication Workflow for Free-Form Timber Structures with Offcuts</i>.
 
-The thesis was supervised by [Professor Dr. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), and [Dr. Stephan Schütz](https://www.strukturstudio.de/).
+The thesis was supervised by [Professor Dr. Jan Willmann](https://www.uni-weimar.de/en/art-and-design/chairs/theory-and-history-of-design/), [Dr. Sven Schneider](https://www.uni-weimar.de/de/architektur-und-urbanistik/professuren/infar), and [Dr. Stephan Schütz](https://www.strukturstudio.de/).
 
 # :v: Citing 
 ## :mortar_board: [Conference Paper](https://doi.org/10.1007/978-3-031-37189-9_24)
