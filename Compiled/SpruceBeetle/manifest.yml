@@ -1,0 +1,14 @@
+---
+name: SpruceBeetle
+version: 1.0.1
+authors:
+- Dominik Reisach
+description: 'A toolkit for working with timber offcuts and reclaimed timber.'
+url: https://github.com/dominikreisach/Spruce-Beetle
+icon: icon.png
+keywords:
+- timber
+- wood
+- offcuts
+- upcycling
+- robotic-fabrication

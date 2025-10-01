@@ -1,0 +1,10 @@
+# Mac system files
+*.DS_Store
+
+# Rhino Package Manager files
+*.yak
+
+# Rhino backup files
+*.bak
+*.3dmbak
+*.dmp
